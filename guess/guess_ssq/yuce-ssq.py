@@ -13,7 +13,7 @@ prefix_url = 'http://kaijiang.zhcw.com/zhcw/html/ssq/list'
 #获取总页数
 total = int(soup.find('p', attrs={"class": "pg"}).find_all('strong')[0].text)
 #将获取的信息，写进文件
-local_file = open('C:/Users/ChenGen/Desktop/dd/guess_ssq/ssq.txt', mode='a+', encoding='utf-8')
+local_file = open('F:/python-libs/trunk/guess/guess_ssq/ssq.txt', mode='a+', encoding='utf-8')
 
 red_num = [] #历史上开出的红球
 blue_num = [] #历史上开出的蓝球
@@ -71,7 +71,7 @@ print('顺选-2：'+str(ssq_red)+'|'+ssq_blue[1])
 print('顺选-3：'+str(ssq_red)+'|'+ssq_blue[2])
 local_file.write('顺选-1：'+str(ssq_red)+'|'+ssq_blue[0])
 local_file.write("\n")
-local_file.write('顺选-2：'+str(ssq_red)+'|'+ssq_blue[1]+'\n')
+local_file.write('顺选-2：'+str(ssq_red)+'|'+ssq_blue[1])
 local_file.write("\n")
 local_file.write('顺选-3：'+str(ssq_red)+'|'+ssq_blue[2]+'\n')
 local_file.write("\n")
