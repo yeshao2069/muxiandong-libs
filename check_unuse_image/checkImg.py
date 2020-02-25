@@ -7,8 +7,10 @@ sys.setdefaultencoding('utf8')
 
 # 需要检查的文件资源列表(绝对路径)
 matePath = "E:/GamesHub/assets/Texture/game/sicbo/room/sicbo_room.plist.meta"
+# 需要检查的文件meta类型
+# matefileTypes = ".plist.meta"
 # 需要检查的文件根路径(绝对路径)
-rootPaht = "E:/GamesHub/assets"
+rootPath = "E:/GamesHub/assets"
 # 需要检查的文件类型
 fileTypes = [".js", ".prefab", ".fire"]
 
@@ -35,7 +37,7 @@ def getFilesByType(root, fileTypes):
 	return putFiles
 
 # 找出指定目录下 未直接使用图片
-def findNotExitImageInfo(imgInfo, fileTypes = fileTypes, root = rootPaht):
+def findNotExitImageInfo(imgInfo, fileTypes = fileTypes, root = rootPath):
 	files = getFilesByType(root, fileTypes)
 	noUseInfo = imgInfo.copy()
 	f2 = open('./checkFiles.txt','w')
@@ -61,12 +63,10 @@ def dumpToFile(data):
 		index = index + 1
 
 if __name__ == '__main__':
-
-
+	# 切换到当前执行文件的工作目录下
 	filename = sys.argv[0]
 	dirname = os.path.dirname(filename)
 	abspath = os.path.abspath(dirname)
-	# print(filename,dirname,abspath)
 	os.chdir(abspath)
 	print(os.getcwd())
 
