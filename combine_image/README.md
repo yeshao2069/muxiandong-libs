@@ -1,5 +1,5 @@
 # python-libs
-written by python. It used to copy data.
+Written by python. It strives to streamline workflow.
 
 ### 合并图片
 #### 把多张图片合并, 并保存

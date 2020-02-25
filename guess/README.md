@@ -1,5 +1,5 @@
 # python-libs
-written by python. It used to copy data.
+Written by python. It strives to streamline workflow.
 
 ### 捕获双色球信息并预测下一期号码(guess_ssq/yuce-ssq.py)
 #### 动态获取http://kaijiang.zhcw.com/ 网站双色球数据

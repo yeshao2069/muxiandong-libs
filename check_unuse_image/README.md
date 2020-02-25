@@ -1,5 +1,5 @@
 # python-libs
-written by python. It used to copy data.
+Written by python. It strives to streamline workflow.
 
 ### (筛选)Creator工程,剔除目标路径下未被使用的资源(checkImage.py)
 #### 需要手动修改需要排查的文件路径, 根文件路径, 文件类型

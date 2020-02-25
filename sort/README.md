@@ -1,5 +1,5 @@
 # python-libs
-written by python. It used to copy data.
+Written by python. It strives to streamline workflow.
 
 #### SortingAlgorithm 全部排序(比较)
 #### 1_bubble_sort 冒泡排序
