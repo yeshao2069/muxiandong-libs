@@ -34,3 +34,7 @@ Written by python. It strives to streamline workflow.
 ### 查找重复文件(find_duplicate_files_v3.py)
 #### 可以查找指定路径下重复文件
 #### 匹配规则是 重复的文件名以及数组,可以列举出哪些文件重复的列表
+
+### 获取目录下所有文件的MD5(get_file_md5.py)
+#### 可以获取指定目录下所有文件的MD5
+#### 可以计算当前运行总时长

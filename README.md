@@ -8,3 +8,4 @@ Written by python. It strives to streamline workflow.
 ### 功能5 (网络/邮件) 发送邮件(以QQ邮箱为例)
 ### 功能6 (文件/查找) 查找大文件
 ### 功能7 (文件/查找) 查找重复文件
+### 功能8 (文件/查找) 获取目录下所有文件的MD5
