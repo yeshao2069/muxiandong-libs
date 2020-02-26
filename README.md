@@ -7,3 +7,4 @@ Written by python. It strives to streamline workflow.
 ### 功能4 (筛选/加强功能3)Creator工程,剔除目标路径下未被使用的资源
 ### 功能5 合并多张图片
 ### 功能6 发送邮件(以QQ邮箱为例)
+### 功能7 查找大文件
