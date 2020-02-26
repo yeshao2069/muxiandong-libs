@@ -1,7 +1,7 @@
 # python-libs
 Written by python. It strives to streamline workflow.
 
-### 合并图片(combine_image.py)
+### 合并图片(combine_image/combine_image.py)
 #### 把多张图片合并, 并保存
 #### need_combine_images文件夹下存放需要合并的散图(如果没有,需要手动创建)
 #### save_image文件夹下存放合并后的图片(自动创建)
