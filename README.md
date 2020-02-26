@@ -7,3 +7,4 @@ Written by python. It strives to streamline workflow.
 ### 功能4 (图片/合并) 合并多张图片
 ### 功能5 (网络/邮件) 发送邮件(以QQ邮箱为例)
 ### 功能6 (文件/查找) 查找大文件
+### 功能7 (文件/查找) 查找重复文件
