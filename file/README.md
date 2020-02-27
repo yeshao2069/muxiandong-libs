@@ -43,3 +43,11 @@ Written by python. It strives to streamline workflow.
 #### 支持写入txt文本文件
 #### 支持写入CSV文件
 #### 支持写入Excel文件
+#### 备注: 需要python3.x 需要安装xlwt, xlrd, python-docx
+
+### 批量压缩js代码(min_js_files.py)
+#### 需要安装python
+#### 需要安装node.js
+#### 需要安装 uglify-js或者uglify-es
+#### npm install uglify-js -g 或者 npm install uglify-es -g
+#### 备注: 比如 main.js 压缩成 main.min.js
