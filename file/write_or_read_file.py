@@ -4,6 +4,13 @@ import os
 import csv
 import xlrd,xlwt
 import datetime
+from docx import Document
+from docx.shared import Inches
+from docx.shared import Pt
+from docx.oxml.ns import qn
+from docx.shared import RGBColor
+from PIL import Image,ImageDraw
+from io import BytesIO
 
 
 # 写入数据到CSV
@@ -89,6 +96,161 @@ def Write2Excel(file_path, sheet_name, contents):
 
     wb.save(file_path)
 
+# 写入数据到Word
+def Write2Word(file_path, headline):
+    document = Document()
+    # 段落集合 document.paragraphs
+    # 表格集合 document.tables
+    # 节集合 document.sections
+    # 样式集合 document.styles
+    # 内置图形 document.inline_shapes
+    
+    document.add_heading(u'MS WORD写入测试',0)
+    document.add_heading(u'一级标题',1)
+    document.add_heading(u'二级标题',2)
+
+    #设置字号
+    paragraph = document.add_paragraph(u'我们在做文本测试！')
+    run = paragraph.add_run(u'设置字号、')
+    run.font.size = Pt(24)
+
+    #设置字体
+    run = paragraph.add_run('Set Font,')
+    run.font.name = 'Consolas'
+
+    #设置中文字体
+    run = paragraph.add_run(u'设置中文字体、')
+    run.font.name=u'宋体'
+    r = run._element
+    r.rPr.rFonts.set(qn('w:eastAsia'), u'宋体')
+
+    #设置颜色
+    run.font.color.rgb = RGBColor(0x0, 0xff, 0x0) # 绿色
+
+    #设置斜体
+    run = paragraph.add_run(u'斜体、')
+    run.italic = True
+
+    #设置粗体
+    run = paragraph.add_run(u'粗体')
+    run.bold = True
+
+    #增加引用
+    document.add_paragraph('Intense quote', style='Intense Quote')
+
+
+    #增加无序列表
+    document.add_paragraph(
+        u'无序列表元素1', style='List Bullet'
+    )
+    document.add_paragraph(
+        u'无序列表元素2', style='List Bullet'
+    )
+    #增加有序列表
+    document.add_paragraph(
+        u'有序列表元素1', style='List Number'
+    )
+    document.add_paragraph(
+        u'有序列表元素2', style='List Number'
+    )
+
+    #增加图像（此处用到图像image.bmp，请自行添加脚本所在目录中）
+    img_name = "F:/python-libs/trunk/image/combine_image/need_combine_images/test1.jpg"
+    document.add_picture(img_name, width=Inches(1.25))
+
+    #增加表格
+    table = document.add_table(rows=1, cols=3)
+    # 新增表格的行,列
+    # table.add_row()
+    # table.add_column(20) # 必须声明width,否则报错
+
+    hdr_cells = table.rows[0].cells
+    hdr_cells[0].text = 'Name'
+    hdr_cells[1].text = 'Id'
+    hdr_cells[2].text = 'Desc'
+    #再增加3行表格元素
+    for i in range(3):
+        row_cells = table.add_row().cells
+        row_cells[0].text = 'test'+str(i)
+        row_cells[1].text = str(i)
+        row_cells[2].text = 'desc'+str(i)
+
+    #增加分页
+    document.add_page_break()
+
+    #添加255个圆圈到word
+    p = document.add_paragraph()
+    r = p.add_run()
+    img_size = 20
+    for x in range(255):
+        im = Image.new("RGB",(img_size,img_size),"white")
+        draw_obj = ImageDraw.Draw(im)
+        draw_obj.ellipse((0,0,img_size-1,img_size-1),fill=255-x) # 画圆
+        fake_buf_file = BytesIO() # 用BytesIO将图片保存在内存中,减少磁盘操作
+        im.save(fake_buf_file,"png")
+        r.add_picture(fake_buf_file) # 插入图片
+        fake_buf_file.close()
+
+    # 定义标题,再添加内容
+    # p_total = document.add_heading()
+    # r_total = p_total.add_run("执行结果如下：")
+    # r_total.font.bold = True # 字体加粗
+
+    # # 添加表格
+    # table = document.add_table(rows=1, cols=3, style="Light List Accent 5")
+    # hdr_cells = table.rows[0].cells
+    # hdr_cells[0].text = 'testName'
+    # hdr_cells[1].text = 'param'
+    # hdr_cells[2].text = 'exc'
+
+    #添加二级标题
+    # p_total = document.add_heading("", 2)
+    # r_total = p_total.add_run("this is second headline")
+    # r_total.font.bold = True
+
+    # 添加图片
+    # img_name = "F:/python-libs/trunk/image/combine_image/need_combine_images/test1.jpg"
+    # document.add_picture(img_name, width=Inches(1.5))
+
+    # 插入有序表
+    document.add_paragraph('time') # 增加一个paragraph
+
+    # #插入有序列表,段落的前面会有序号123
+    # document.add_paragraph('把冰箱门打开',style='List Number')
+    # document.add_paragraph('把大象装进去',style='List Number')
+    # document.add_paragraph('把冰箱门关上',style='List Number')
+
+    # #插入无序列表，段落的前面没有序号
+    # document.add_paragraph('把冰箱门打开',style='List Bullet')
+    # document.add_paragraph('把大象装进去',style='List Bullet')
+    # document.add_paragraph('把冰箱门关上',style='List Bullet')
+
+    # 插入一个6行6列的表格
+    # table=document.add_table(rows=6,cols=6,style='Table Grid')
+    # for i in range(0,6):
+    #     for j in range(0,6):
+    #         table.cell(i,j).text="第{i}行{j}列".format(i=i+1,j=j+1)
+
+
+
+    document.save(file_path)  # 保存文档
+
+# 读取word数据
+def ReadWord(file_path):
+    #打开文档
+    document = Document(u''+file_path)
+    #读取每段资料
+    l = [ paragraph.text.encode('gb2312') for paragraph in document.paragraphs];
+    #输出并观察结果，也可以通过其他手段处理文本即可
+    for i in l:
+        print (i)
+    #读取表格材料，并输出结果
+    tables = [table for table in document.tables];
+    for table in tables:
+        for row in table.rows:
+            for cell in row.cells:
+                print (cell.text.encode('gb2312'),'\t', print)
+        print ('\n')
 
 # 写入数据到txt
 def Write2Txt(file_path, contents):
@@ -113,3 +275,8 @@ if __name__ == '__main__':
 
     file_path = abspath + "/test.xls"
     Write2Excel(file_path, "test", [["a","b"],["1","2"],["4","5"]])
+
+    file_path = abspath + "/test.docx"
+    Write2Word(file_path, "this is headline")
+
+    # ReadWord(file_path)
