@@ -1,6 +1,9 @@
+# -*- coding: utf-8 -*-
 import requests
 from bs4 import BeautifulSoup
 from collections import Counter
+import sys
+import os
 
 # 获取内容
 res = requests.get('http://kaijiang.zhcw.com/zhcw/html/ssq/list_1.html', timeout = 30)
@@ -12,8 +15,17 @@ soup = BeautifulSoup(htm, 'html.parser')
 prefix_url = 'http://kaijiang.zhcw.com/zhcw/html/ssq/list'
 #获取总页数
 total = int(soup.find('p', attrs={"class": "pg"}).find_all('strong')[0].text)
+
+# 切换到当前执行文件的工作目录下
+filename = sys.argv[0]
+dirname = os.path.dirname(filename)
+abspath = os.path.abspath(dirname)
+os.chdir(abspath)
+print(os.getcwd())
+file_path = abspath + "/ssq.txt"
+
 #将获取的信息，写进文件
-local_file = open('F:/python-libs/trunk/guess/guess_ssq/ssq.txt', mode='a+', encoding='utf-8')
+local_file = open(file_path, mode='a+', encoding='utf-8')
 
 red_num = [] #历史上开出的红球
 blue_num = [] #历史上开出的蓝球

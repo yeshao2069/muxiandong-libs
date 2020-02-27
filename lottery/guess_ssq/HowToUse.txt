@@ -1,9 +1,0 @@
-1 close code to your computer, such as F:\python-libs, so we can find the fileDir is F:\python-libs\trunk\guess\guess_ssq
-
-2 change yuce-ssq.py , the local_file line 16 to your setting fileDir,such as  F:\python-libs\trunk\guess\guess_ssq
-
-3 if you didn't install module requests, you'll be warned ModuleNot FoundError:No module named 'requests', you should install module requests, you can input (pip install requests) in terminal. If it doesn't work, you can search how to import module requests
-
-4 install module requests done. and you also need to install module bs4. you can input (pip install beautifulsoup4) in terminal.
-
-5 install module bs4 done. you can start to work command (python F:\python-libs\trunk\guess\guess_ssq.py) to run script.
