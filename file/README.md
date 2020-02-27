@@ -38,3 +38,8 @@ Written by python. It strives to streamline workflow.
 ### 获取目录下所有文件的MD5(get_file_md5.py)
 #### 可以获取指定目录下所有文件的MD5
 #### 可以计算当前运行总时长
+
+### 写入/读取文件(write_or_read_file.py)
+#### 支持写入txt文本文件
+#### 支持写入CSV文件
+#### 支持写入Excel文件

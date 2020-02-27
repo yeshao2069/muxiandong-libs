@@ -10,3 +10,4 @@ Written by python. It strives to streamline workflow.
 ### 功能7 (文件/查找) 查找重复文件
 ### 功能8 (文件/查找) 获取目录下所有文件的MD5
 ### 功能9 (工具/打包) 基于Egret工程的ios/android的打包和热更新资源包
+### 功能10 (文件/读写) 写入/读取文件(*.txt,*.csv,*.xls)
