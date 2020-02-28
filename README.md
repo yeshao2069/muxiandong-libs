@@ -13,3 +13,5 @@ Written by python. It strives to streamline workflow.
 ### 功能10 (工具/打包) 基于Cocos Creator工程的web-mobile/web-desktop打包
 ### 功能11 (文件/读写) 写入/读取文件
 ### 功能12 (文件/压缩) 批量压缩js代码
+### 功能13 (文件/压缩) 批量压缩json文件
+### 功能14 (文件/格式化) 格式化被压缩的json文件
