@@ -1,4 +1,6 @@
+#encoding=UTF-8
 import os
+import sys
 # 需要安装python
 # 需要安装node.js
 # 需要安装 uglify-js或者uglify-es
@@ -31,4 +33,9 @@ def ProcAll(root, recursive=True):
     
     
 if __name__ == '__main__':
-    ProcAll(r'F:\test', recursive=False)
+    # 获取当前执行文件的工作目录
+    filename = sys.argv[0]
+    dirname = os.path.dirname(filename)
+    abspath = os.path.abspath(dirname)
+
+    ProcAll(r'%s/test_js_codes'%(abspath), recursive=False)
