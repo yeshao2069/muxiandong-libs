@@ -58,3 +58,15 @@ Written by python. It strives to streamline workflow.
 ##### 如果在最新js代码或者资源不存在,但是旧的资源中存在,那么有可能该资源在最新中已经不需要且删除,不添加,但是也没有办法从原apk/ipa中删除资源(不好实现,就不管,该资源变成无用垃圾存在原包,但是不引用的情况下,不会影响)
 ##### 更新列表filelist.json列举所有需要热更新(新增的/修改的)的资源,打包成zip
 ##### 服务端收到zip,把zip解压后,把所有的文件资源(不能修改原本文件的层级,因为这个文件的路径,已经被记录到filelist.json中,文件和json中的路径一一对应),放到原本config.json中定义的远程下载地址上.客户端就可以从远程获取资源列表以及资源和原本资源做比较且下载了
+
+## Cocos自动打包(cocos_pack)
+### Cocos Creator Web-Mobile自动打包(creator_publish_web_mobile.py)
+#### 设置构建发布相关选项, 打开引擎->项目->构建发布
+#### 游戏名称,初始场景,参与构建场景等等,根据自身游戏设定
+#### 选择发布平台 Web Mobile
+#### 选择发布路径 默认为build(但是因为我经常需要出debug包,所以我设定的是项目路径下/build/debug, 如果你不这么使用, 需要修改python脚本中的路径和这个保持一致)
+#### 其余默认,运行脚本,在build/debug中会生成编译后的zip包. 加压缩后放到web服务端运行即可.
+
+### Cocos Creator Web-Desktop自动打包与Web-Mobile一样,不过要修改发布平台, 这两种都是html5(h5)打包方式
+#### 备注:Web-Mobile默认会将游戏视图撑满整个手机浏览器窗口
+#### 备注:Web-Desktop平台允许在发布时指定一个游戏视图的分辨率，而且之后游戏视图也不会随着浏览器窗口大小变化而变化，一般构建运行在 PC 浏览器上。
