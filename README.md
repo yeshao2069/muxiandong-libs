@@ -8,7 +8,7 @@ Written by python. It strives to streamline workflow.
 ### 功能5 (文件/查找) 查找大文件
 ### 功能6 (文件/查找) 查找重复文件
 ### 功能7 (文件/查找) 获取目录下所有文件的MD5
-### 功能8 (工具/检查) 基于Creator工程,剔除目标路径下未被使用的资源
+### 功能8 (工具/检查) 基于Cocos Creator工程,检查未被使用的资源
 ### 功能9 (工具/打包) 基于Egret工程的ios/android打包和热更新资源包
 ### 功能10 (工具/打包) 基于Cocos Creator工程的web-mobile/web-desktop打包
 ### 功能11 (文件/读写) 写入/读取文件
