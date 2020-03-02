@@ -36,7 +36,8 @@ def getWebContent():
     abspath = os.path.abspath(dirname)
     os.chdir(abspath)
     print(os.getcwd())
-    file_path = abspath + "/ssq.csv"
+    new_file_path = abspath + "/ssq_new.csv"
+    sort_file_path = abspath + "/ssq_sorted.csv"
 
     #将获取的信息，写进文件
     red_num = [] #历史上开出的红球
@@ -83,9 +84,14 @@ def getWebContent():
             else:
                 continue
 
-        # print(csv_data_array)
+    # 重新整理 逆序存储
+    sorted_data_array = csv_data_array.copy()
+    sorted_data_array.reverse()
+
+    # print(csv_data_array)
     head_row = ["开奖时间","开奖期号","红球1","红球2","红球3","红球4","红球5","红球6","蓝球"]
-    Write2CSV(file_path, head_row, csv_data_array)
+    Write2CSV(new_file_path, head_row, csv_data_array)
+    Write2CSV(sort_file_path, head_row, sorted_data_array)
 
     red_count = Counter(red_num)
     blue_count = Counter(blue_num)
