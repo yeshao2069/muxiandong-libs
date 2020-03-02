@@ -24,6 +24,19 @@ def Write2CSV(file_path, head_row, content_rows):
         csv_writer.writerow(content_rows[i])
     f.close()
 
+# 读取CSV文件
+def ReadCSV(file_path):
+    csvDatas = []
+    tempCsvDatas = []
+    with open(file_path,newline='',encoding='UTF-8') as csvfile:
+        rows = csv.reader(csvfile)
+        for row in rows:
+            for i in row:
+                tempCsvDatas.append(i)
+            print(','.join(row))
+            csvDatas.append(tempCsvDatas)
+    return csvDatas
+
 # 写入数据到Excel
 def Write2Excel(file_path, sheet_name, contents):
     wb = xlwt.Workbook(encoding='utf-8')
@@ -249,7 +262,7 @@ def ReadWord(file_path):
     for table in tables:
         for row in table.rows:
             for cell in row.cells:
-                print (cell.text.encode('gb2312'),'\t', print)
+                print(cell.text.encode('gb2312'),'\t', print)
         print ('\n')
 
 # 写入数据到txt
@@ -269,14 +282,14 @@ if __name__ == '__main__':
 
     file_path = abspath + "/test.csv"
     Write2CSV(file_path, ["姓名","年龄","性别"], [["l",'18','男'],["c",'20','男'],["w",'22','女']])
+    ReadCSV(file_path)
 
     file_path = abspath + "/test.txt"
-    Write2Txt(file_path, ["aaaa","bbbb"])
+    # Write2Txt(file_path, ["aaaa","bbbb"])
 
     file_path = abspath + "/test.xls"
-    Write2Excel(file_path, "test", [["a","b"],["1","2"],["4","5"]])
+    # Write2Excel(file_path, "test", [["a","b"],["1","2"],["4","5"]])
 
     file_path = abspath + "/test.docx"
-    Write2Word(file_path, "this is headline")
-
+    # Write2Word(file_path, "this is headline")
     # ReadWord(file_path)

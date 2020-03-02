@@ -17,6 +17,27 @@ def Write2CSV(file_path, head_row, content_rows):
         csv_writer.writerow(content_rows[i])
     f.close()
 
+# 读取csv
+def ReadCSV():
+    # 切换到当前执行文件的工作目录下
+    filename = sys.argv[0]
+    dirname = os.path.dirname(filename)
+    abspath = os.path.abspath(dirname)
+    os.chdir(abspath)
+    print(os.getcwd())
+    file_path = abspath + "/ssq_sorted.csv"
+
+    csvDatas = []
+    tempCsvDatas = []
+    with open(file_path,newline='',encoding='UTF-8') as csvfile:
+        rows = csv.reader(csvfile)
+        for row in rows:
+            for i in row:
+                tempCsvDatas.append(i)
+            # print(','.join(row))
+            csvDatas.append(tempCsvDatas)
+    return csvDatas
+
 def getWebContent():
     # 获取内容
     web_page = 'http://kaijiang.zhcw.com/zhcw/html/ssq/list_1.html'
@@ -131,5 +152,18 @@ def getWebContent():
     print('反选-2：'+str(ssq_red)+'|'+ssq_blue[1])
     print('反选-3：'+str(ssq_red)+'|'+ssq_blue[2])
 
+def analysisData(arrays):
+
+    for row_num in range(0, len(arrays)-1):
+        # print(arrays[row_num])
+        # for i in arrays
+
 if __name__ == "__main__":
-    getWebContent()
+    # 获取数据
+    # getWebContent()
+
+    # 读取数据
+    array = ReadCSV()
+    # print(array)
+
+    analysisData(array)
