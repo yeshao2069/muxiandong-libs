@@ -163,6 +163,71 @@ def counterBall(arr, d_arr):
             arr[d] = 1
     return arr
 
+# 单式
+def isWinSingle(a_arr, my_arr):
+    a_blue = a_arr[-1]
+    a_arr.pop()
+    a_reds = sorted(a_arr)
+
+    b_blue = my_arr[-1]
+    my_arr.pop()
+    b_reds = sorted(my_arr)
+
+    print(a_reds,a_blue)
+    print(b_reds,b_blue)
+    if(len(a_reds) < 6 and len(b_reds) < 6):
+        print("isWinSingle wrong data")
+        return 0
+
+    red_same = 0
+    is_blue_same = False
+    win_type = 0
+    for i in range(0,6):
+        if a_reds[i] == b_reds[i]:
+            red_same = red_same + 1
+
+    if(a_blue == b_blue):
+        is_blue_same = True
+
+    print(red_same,is_blue_same)
+    if is_blue_same:
+        win_type = 6
+        if red_same >= 3:
+            win_type = 5
+        if red_same >= 4:
+            win_type = 4
+        if red_same >= 5:
+            win_type = 3
+        if red_same >= 6:
+            win_type = 1
+    else:
+        win_type = 0
+        if red_same >= 4:
+            win_type = 5
+        if red_same >= 5:
+            win_type = 4
+        if red_same >= 6:
+            win_type = 2
+
+    return win_type
+
+def testWin(a_arr, my_arr):
+    getWinType = isWinSingle(a_arr, my_arr)
+    if getWinType == 0:
+        return "没中奖"
+    elif getWinType == 1:
+        return "一等奖"
+    elif getWinType == 2:
+        return "二等奖"
+    elif getWinType == 3:
+        return "三等奖"
+    elif getWinType == 4:
+        return "四等奖"
+    elif getWinType == 5:
+        return "五等奖"
+    elif getWinType == 6:
+        return "六等奖"
+
 # 获取历年的球总数
 def getSumData(arr):
     arr_r = {}
@@ -287,10 +352,24 @@ def getEachSumData(arr):
         Write2CSV(r_path, ["红球号码","总数"], cont_r_arr)
         Write2CSV(b_path, ["蓝球号码","总数"], cont_b_arr)
 
-def analysisData(arrays):
-    getSumData(arrays)
-    getEachSumData(arrays)
+# 获取历年的球准确率
+def getDataRightRate(arr):
+    return "Aaa"
 
+def analysisData(arrays):
+    # getSumData(arrays)
+    # getEachSumData(arrays)
+    # getDataRightRate(arrays)
+
+    
+    # aaa = testWin([3,2,1,6,4,5,7],[1,2,3,4,5,6,7])
+    # aaa = testWin([3,2,1,6,4,5,7],[1,2,3,4,5,6,10])
+    # aaa = testWin([3,2,1,6,4,5,7],[1,2,3,4,5,7,10])
+    # aaa = testWin([3,2,1,6,4,5,7],[1,2,3,4,8,7,10])
+    # aaa = testWin([3,2,1,6,4,5,7],[1,2,3,9,8,7,7])
+    # aaa = testWin([3,2,1,6,4,5,7],[11,12,13,9,8,7,7])
+    # aaa = testWin([3,2,1,6,4,5,7],[1,2,3,9,8,7,10])
+    # print(aaa)
 
 if __name__ == "__main__":
     # 获取数据
