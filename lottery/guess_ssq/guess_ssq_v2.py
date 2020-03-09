@@ -173,8 +173,8 @@ def isWinSingle(a_arr, my_arr):
     my_arr.pop()
     b_reds = sorted(my_arr)
 
-    print(a_reds,a_blue)
-    print(b_reds,b_blue)
+    # print(a_reds,a_blue)
+    # print(b_reds,b_blue)
     if(len(a_reds) < 6 and len(b_reds) < 6):
         print("isWinSingle wrong data")
         return 0
@@ -189,7 +189,7 @@ def isWinSingle(a_arr, my_arr):
     if(a_blue == b_blue):
         is_blue_same = True
 
-    print(red_same,is_blue_same)
+    # print(red_same,is_blue_same)
     if is_blue_same:
         win_type = 6
         if red_same >= 3:
@@ -211,22 +211,54 @@ def isWinSingle(a_arr, my_arr):
 
     return win_type
 
-def testWin(a_arr, my_arr):
+def testWin(a_arr, my_arr, winArr):
     getWinType = isWinSingle(a_arr, my_arr)
+    if len(winArr) >= 7:
+        loseSum = winArr[0]
+        winOneSum = winArr[1]
+        winTwoSum = winArr[2]
+        winThreeSum = winArr[3]
+        winFourSum = winArr[4]
+        winFiveSum = winArr[5]
+        winSixSum = winArr[6]
+    else:
+        loseSum = 0
+        winOneSum = 0
+        winTwoSum = 0
+        winThreeSum = 0
+        winFourSum = 0
+        winFiveSum = 0
+        winSixSum = 0
     if getWinType == 0:
-        return "没中奖"
+        loseSum = loseSum + 1
+        winArr[0] = loseSum
+        # return "没中奖"
     elif getWinType == 1:
-        return "一等奖"
+        winOneSum = winOneSum + 1
+        winArr[1] = winOneSum
+        # return "一等奖"
     elif getWinType == 2:
-        return "二等奖"
+        winTwoSum = winTwoSum + 1
+        winArr[2] = winTwoSum
+        # return "二等奖"
     elif getWinType == 3:
-        return "三等奖"
+        winThreeSum = winThreeSum + 1
+        winArr[3] = winThreeSum
+        # return "三等奖"
     elif getWinType == 4:
-        return "四等奖"
+        winFourSum = winFourSum + 1
+        winArr[4] = winFourSum
+        # return "四等奖"
     elif getWinType == 5:
-        return "五等奖"
+        winFiveSum = winFiveSum + 1
+        winArr[5] = winFiveSum
+        # return "五等奖"
     elif getWinType == 6:
-        return "六等奖"
+        winSixSum = winSixSum + 1
+        winArr[6] = winSixSum
+        # return "六等奖"
+    print("获得一等奖%s次,二等奖%s次,三等奖%s次,四等奖%s次,五等奖%s次,六等奖%s次,没获奖%s次"%(winOneSum,winTwoSum,winThreeSum,winFourSum,winFiveSum,winSixSum,loseSum))
+    return winArr
 
 # 获取历年的球总数
 def getSumData(arr):
@@ -353,23 +385,80 @@ def getEachSumData(arr):
         Write2CSV(b_path, ["蓝球号码","总数"], cont_b_arr)
 
 # 获取历年的球准确率
-def getDataRightRate(arr):
-    return "Aaa"
+def getDataRightRate(arr,mode=1):
+    if mode == 3:
+        winA = getDataRightRate(arr,1)
+        winB = getDataRightRate(arr,1)
+        winA[0] = 0
+        for i in range(0, len(winA)):
+            winA[i] = winA[i] + winB[i]
+        print(winA)
+    else:
+        red_num = []
+        blue_num = []
+        winArr = [0,0,0,0,0,0,0]
+        for i in range(1,len(arr)-1):
+            red_num.append(arr[i][2])
+            red_num.append(arr[i][3])
+            red_num.append(arr[i][4])
+            red_num.append(arr[i][5])
+            red_num.append(arr[i][6])
+            red_num.append(arr[i][7])
+            blue_num.append(arr[i][8])
+            red_count = Counter(red_num)
+            blue_count = Counter(blue_num)
+
+            # 正选
+            if mode == 1:
+                red_count_sorted = sorted(red_count.items(), key=lambda pair: pair[1], reverse=False)
+                blue_count_sorted = sorted(blue_count.items(), key=lambda pair: pair[1], reverse=False)
+            # 反选
+            elif mode == 2:
+                red_count_sorted = sorted(red_count.items(), key=lambda pair: pair[1], reverse=True)
+                blue_count_sorted = sorted(blue_count.items(), key=lambda pair: pair[1], reverse=True)
+
+            ssq_red = red_count_sorted[0:6]
+            ssq_blue = blue_count_sorted[0:3]
+            ssq_red = list(map(lambda item:item[0], ssq_red))
+            ssq_blue = list(map(lambda item:item[0], ssq_blue))
+            ssq_red.sort()
+            ssq_blue.sort()
+            # print(i,ssq_red,ssq_blue)
+
+            expected_arr = []
+            next_arr = []
+            if arr[i+1]:
+                next_arr.append(arr[i+1][2])
+                next_arr.append(arr[i+1][3])
+                next_arr.append(arr[i+1][4])
+                next_arr.append(arr[i+1][5])
+                next_arr.append(arr[i+1][6])
+                next_arr.append(arr[i+1][7])
+                next_arr.append(arr[i+1][8])
+                if len(ssq_blue)>0:
+                    expected_arr = ssq_red
+                    expected_arr.append(ssq_blue[0])
+                    winArr = testWin(next_arr, expected_arr, winArr)
+                elif len(ssq_blue)>1:
+                    expected_arr = ssq_red
+                    expected_arr.append(ssq_blue[1])
+                    winArr = testWin(next_arr, expected_arr, winArr)
+                elif len(ssq_blue)>2:
+                    expected_arr = ssq_red
+                    expected_arr.append(ssq_blue[2])
+                    winArr = testWin(next_arr, expected_arr, winArr)
+            
+        t = 0
+        for j in range(1,len(winArr)-1):
+            t = winArr[j] + t
+        rate = t / winArr[0]
+        print(rate)
+        return winArr
 
 def analysisData(arrays):
     # getSumData(arrays)
     # getEachSumData(arrays)
-    # getDataRightRate(arrays)
-
-    
-    # aaa = testWin([3,2,1,6,4,5,7],[1,2,3,4,5,6,7])
-    # aaa = testWin([3,2,1,6,4,5,7],[1,2,3,4,5,6,10])
-    # aaa = testWin([3,2,1,6,4,5,7],[1,2,3,4,5,7,10])
-    # aaa = testWin([3,2,1,6,4,5,7],[1,2,3,4,8,7,10])
-    # aaa = testWin([3,2,1,6,4,5,7],[1,2,3,9,8,7,7])
-    # aaa = testWin([3,2,1,6,4,5,7],[11,12,13,9,8,7,7])
-    # aaa = testWin([3,2,1,6,4,5,7],[1,2,3,9,8,7,10])
-    # print(aaa)
+    getDataRightRate(arrays,3)
 
 if __name__ == "__main__":
     # 获取数据
