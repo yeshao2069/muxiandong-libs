@@ -16,3 +16,4 @@ Written by python. It strives to streamline workflow.
 ### 功能13 (文件/压缩) 批量压缩json文件
 ### 功能14 (文件/格式化) 批量格式化被压缩的json文件
 ### 功能15 (文件/格式化) 批量格式化被压缩的js文件
+### 功能16 (网络/下载) 下载在线视频
