@@ -16,3 +16,4 @@ Written by python. It strives to streamline workflow.
 ###### 12) [批量压缩js/json](https://github.com/yeshao2069/python-libs/tree/master/tool/min_files)
 ###### 13) [批量格式化被压缩js/json](https://github.com/yeshao2069/python-libs/tree/master/tool/format_files)
 ###### 14) [下载在线视频](https://github.com/yeshao2069/python-libs/tree/master/tool/load_online_video)
+###### 15) plist图片裁切[zxh版本](https://github.com/yeshao2069/python-libs/tree/master/tool/texturepacker_png_split/ver_zxh)
