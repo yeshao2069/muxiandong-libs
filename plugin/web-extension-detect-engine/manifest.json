@@ -1,0 +1,31 @@
+{
+  "manifest_version": 2,
+  "name": "Web Game Engine Detector",
+  "description": "Detects web game engine, supports FBIG.",
+  "author": "Cocos",
+  "version": "1.1",
+  "homepage_url": "https://github.com/cocos-creator/web-extension-detect-engine",
+  "permissions": [
+    "https://*/*",
+    "http://*/*"
+  ],
+  "background": {
+    "scripts": ["js/background.js"],
+    "persistent": false
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.apps.fbsbx.com/instant-bundle/*"
+      ],
+      "js": [
+        "js/contentscript.js"
+      ],
+      "all_frames": true
+    }
+  ],
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_title": "开牌"
+  }
+}
