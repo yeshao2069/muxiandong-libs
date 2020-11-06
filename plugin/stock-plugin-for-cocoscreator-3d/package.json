@@ -1,0 +1,65 @@
+{
+    "name": "stock",
+    "title": "i18n:stock.title",
+    "version": "1.0.0",
+    "description": "Stock assistant",
+    "author": "VisualSJ",
+    "main": "browser.js",
+    "contributions": {
+        "profile": {
+            "editor": {
+                "current": {
+                    "label": "i18n:stock.preferences.code",
+                    "message": "update",
+                    "default": ""
+                },
+                "interval": {
+                    "label": "i18n:stock.preferences.interval",
+                    "message": "update",
+                    "default": 20
+                },
+                "numerical": {
+                    "label": "i18n:stock.preferences.numerical",
+                    "message": "update",
+                    "default": true
+                },
+                "amplitude": {
+                    "label": "i18n:stock.preferences.amplitude",
+                    "message": "update",
+                    "default": false
+                }
+            }
+        },
+        "preferences": {
+            "properties": {
+                "current": {
+                    "ui": "ui-input"
+                },
+                "interval": {
+                    "ui": "ui-num-input",
+                    "attribute": {
+                        "step": 1,
+                        "min": 5
+                    }
+                },
+                "numerical": {
+                    "ui": "ui-checkbox"
+                },
+                "amplitude": {
+                    "ui": "ui-checkbox"
+                }
+            }
+        },
+        "messages": {
+            "update": {
+                "methods": ["update"]
+            }
+        },
+        "footer": {
+            "left": "./footer.js"
+        }
+    },
+    "dependencies": {
+        "iconv-lite": "^0.6.2"
+    }
+}
